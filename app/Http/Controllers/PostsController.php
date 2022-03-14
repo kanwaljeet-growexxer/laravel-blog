@@ -9,7 +9,7 @@ class PostsController extends Controller
 {
     const ADDED_SUCCESS_MSG  = 'Your post has been added!';
     const UPDATE_SUCCESS_MSG = 'Your post has been updated!';
-    const DELETE_SUCCESS_MSG = 'Post Deleted Successfully';
+    const DELETE_SUCCESS_MSG = 'Your post has been deleted!';
     const MESSAGE            = 'message';
     const PAGINATION_COUNT   = 10;
 
@@ -67,7 +67,8 @@ class PostsController extends Controller
      */
     public function show($id)
     {
-        //
+        return view('post.show')
+            ->with('post', Post::where('id', $id)->first());
     }
 
     /**
@@ -117,6 +118,10 @@ class PostsController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $post = Post::where('id', $id);
+        $post->delete();
+
+        return redirect('/post')
+        ->with(self::MESSAGE, self::DELETE_SUCCESS_MSG);
     }
 }

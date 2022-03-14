@@ -32,7 +32,7 @@
                             </x-button>
                         </a>
                         <form method="POST"
-                        action="{{ url('/admin/posts' . '/' . $post->id) }}" accept-charset="UTF-8" style="display:inline">
+                        action="{{ url('/post' . '/' . $post->id) }}" accept-charset="UTF-8" style="display:inline">
                             @csrf
                             @method('DELETE')
                             <x-button class="ml-3" type="submit" onclick="return confirm('Do you want to delete this post?')">

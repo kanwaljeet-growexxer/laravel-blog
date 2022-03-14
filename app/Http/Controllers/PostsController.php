@@ -67,7 +67,8 @@ class PostsController extends Controller
      */
     public function show($id)
     {
-        //
+        return view('post.show')
+            ->with('post', Post::where('id', $id)->first());
     }
 
     /**

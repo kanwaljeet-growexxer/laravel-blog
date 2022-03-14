@@ -8,7 +8,7 @@ use App\Models\Post;
 class PostsController extends Controller
 {
     const ADDED_SUCCESS_MSG  = 'Your post has been added!';
-    const UPDATE_SUCCESS_MSG = 'Post Updated Successfully';
+    const UPDATE_SUCCESS_MSG = 'Your post has been updated!';
     const DELETE_SUCCESS_MSG = 'Post Deleted Successfully';
     const MESSAGE            = 'message';
     const PAGINATION_COUNT   = 10;
@@ -78,7 +78,8 @@ class PostsController extends Controller
      */
     public function edit($id)
     {
-        //
+        return view('post.edit')
+            ->with('post', Post::where('id', $id)->first());
     }
 
     /**
@@ -90,7 +91,22 @@ class PostsController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $request->validate([
+            'title' => 'required',
+            'description' => 'required',
+            'category' => 'required'
+        ]);
+
+        Post::where('id', $id)
+            ->update([
+                'title' => $request->input('title'),
+                'description' => $request->input('description'),
+                'category' => $request->input('category'),
+                'user_id' => auth()->user()->id
+            ]);
+
+        return redirect('/post')
+            ->with(self::MESSAGE, self::UPDATE_SUCCESS_MSG);
     }
 
     /**

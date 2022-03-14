@@ -7,9 +7,13 @@
     <div class="py-12">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
-                <div>
-                        <a href="{{ url('/admin/posts/create') }}" class="btn btn-success btn-sm" title="Add New Post">
-                            <i class="fa fa-plus" aria-hidden="true"></i> Add New
+                <x-success-message />
+               
+                <div class="flex items-center mt-4">
+                        <a href="{{ url('/post/create') }}" class="btn btn-success btn-sm">
+                            <x-button class="ml-3">
+                                {{ __('Add New Post') }}
+                            </x-button>
                         </a>
                 </div>
                         <br/>

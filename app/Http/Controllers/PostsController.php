@@ -7,6 +7,12 @@ use App\Models\Post;
 
 class PostsController extends Controller
 {
+    const ADDED_SUCCESS_MSG  = 'Your post has been added!';
+    const UPDATE_SUCCESS_MSG = 'Post Updated Successfully';
+    const DELETE_SUCCESS_MSG = 'Post Deleted Successfully';
+    const MESSAGE            = 'message';
+    const PAGINATION_COUNT   = 10;
+
     /**
      * Display a listing of the resource.
      *
@@ -25,7 +31,7 @@ class PostsController extends Controller
      */
     public function create()
     {
-        //
+        return view('post.create');
     }
 
     /**
@@ -36,7 +42,21 @@ class PostsController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'title' => 'required',
+            'description' => 'required',
+            'category' => 'required'
+        ]);
+
+        Post::create([
+            'title' => $request->input('title'),
+            'description' => $request->input('description'),
+            'category' => $request->input('category'),
+            'user_id' => auth()->user()->id
+        ]);
+
+        return redirect('/post')
+            ->with(self::MESSAGE, self::ADDED_SUCCESS_MSG);
     }
 
     /**

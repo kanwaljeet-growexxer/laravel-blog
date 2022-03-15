@@ -17,10 +17,10 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::resource('/post', PostsController::class);
-
 Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth'])->name('dashboard');
 
 require __DIR__.'/auth.php';
+
+Route::resource('/post', PostsController::class);

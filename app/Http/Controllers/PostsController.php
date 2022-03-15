@@ -12,6 +12,7 @@ class PostsController extends Controller
     const DELETE_SUCCESS_MSG = 'Your post has been deleted!';
     const MESSAGE            = 'message';
     const PAGINATION_COUNT   = 10;
+    const POST_ROUTE   = '/post';
 
     /**
      * Display a listing of the resource.
@@ -55,7 +56,7 @@ class PostsController extends Controller
             'user_id' => auth()->user()->id
         ]);
 
-        return redirect('/post')
+        return redirect(self::POST_ROUTE)
             ->with(self::MESSAGE, self::ADDED_SUCCESS_MSG);
     }
 
@@ -106,7 +107,7 @@ class PostsController extends Controller
                 'user_id' => auth()->user()->id
             ]);
 
-        return redirect('/post')
+        return redirect(self::POST_ROUTE)
             ->with(self::MESSAGE, self::UPDATE_SUCCESS_MSG);
     }
 
@@ -121,7 +122,7 @@ class PostsController extends Controller
         $post = Post::where('id', $id);
         $post->delete();
 
-        return redirect('/post')
+        return redirect(self::POST_ROUTE)
         ->with(self::MESSAGE, self::DELETE_SUCCESS_MSG);
     }
 }

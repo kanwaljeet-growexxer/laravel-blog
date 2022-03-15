@@ -16,7 +16,6 @@ class PostFactory extends Factory
             'title' => $this->faker->sentence,
             'description' => $this->faker->sentence,
             'category' => 'Railway',
-            'user_id' => 1
         ];
     }
 }

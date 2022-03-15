@@ -13,7 +13,6 @@ npm-debug.log
 yarn-error.log
 /.idea
 /.vscode
-/tests
 /.scannerwork
 /sonar-project.properties
 946694phpunit.xml

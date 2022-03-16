@@ -10,5 +10,7 @@ php artisan test
 
 ## To pass sonar qube quality test. Run these reports and add same path in sonar-project.properties file.
  php vendor/bin/phpunit --coverage-html tests/codecoverage/html
+
  php vendor/bin/phpunit --junit tests/codecoverage/tests-report.xml
+ 
  php vendor/bin/phpunit --coverage-clover tests/codecoverage/coverage-report.xml

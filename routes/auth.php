@@ -30,8 +30,17 @@ Route::middleware('guest')->group(function () {
     Route::get('reset-password/{token}', [NewPasswordController::class, 'create'])
                 ->name('password.reset');
 
-    Route::post('reset-password', [NewPasswordController::class, 'store'])
-                ->name('password.update');
+   // Google login
+    Route::get('login/google', [AuthenticatedSessionController::class, 'redirectToGoogle'])->name('login.google');
+    Route::get('login/google/callback', [AuthenticatedSessionController::class, 'handleGoogleCallback']);
+
+    // Facebook login
+    Route::get('login/facebook', [AuthenticatedSessionController::class, 'redirectToFacebook'])->name('login.facebook');
+    Route::get('login/facebook/callback', [AuthenticatedSessionController::class, 'handleFacebookCallback']);
+
+    // Github login
+    Route::get('login/github', [AuthenticatedSessionController::class, 'redirectToGithub'])->name('login.github');
+    Route::get('login/github/callback', [AuthenticatedSessionController::class, 'handleGithubCallback']);
 });
 
 Route::middleware('auth')->group(function () {

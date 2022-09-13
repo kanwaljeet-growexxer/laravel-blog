@@ -17,6 +17,25 @@
 
             <!-- Email Address -->
             <div>
+                <a href="{{ route('login.facebook') }}" class="block text-center mt-2">
+                    <x-button type="button">
+                        {{ __('Login with Facebook') }}
+                    </x-button>
+                </a>
+                <a href="{{ route('login.google') }}" class="block text-center mt-3">
+                    <x-button type="button">
+                        {{ __('Login with Google') }}
+                    </x-button>
+                </a>
+                <a href="{{ route('login.github') }}" class="block text-center mt-3">
+                    <x-button type="button">
+                        {{ __('Login with Git Hub') }}
+                    </x-button>
+                </a>
+            </div>
+            <p class="mt-4 text-center font-semibold">OR</p>
+            <!-- Email Address -->
+            <div class="mt-4">
                 <x-label for="email" :value="__('Email')" />
 
                 <x-input id="email" class="block mt-1 w-full" type="email" name="email" :value="old('email')" required autofocus />
